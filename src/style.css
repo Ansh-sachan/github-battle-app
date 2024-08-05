@@ -276,3 +276,31 @@ a i {
   padding: 1rem 1.4rem;
   border-radius: 10px;
 }
+.links {
+  width: 20rem;
+}
+.links div {
+  margin: 2rem;
+  font-size: 1.3rem;
+  width: 5rem;
+}
+.instruction {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+.winner {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: crimson;
+}
+.battle-btn {
+  background-color: black;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-left: 500px;
+  width: 10rem;
+  margin-bottom: 2rem;
+}

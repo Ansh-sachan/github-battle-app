@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Popular extends React.Component {
   constructor(props) {
@@ -36,6 +37,19 @@ class Popular extends React.Component {
     let langArr = ['All', 'Javascript', 'Python', 'Ruby', 'Java', 'CSS'];
     return (
       <>
+        <div className="links flex">
+          <div>
+            <Link to="/" exact>
+              Popular
+            </Link>
+          </div>
+          <div>
+            <Link to="/battle" exact>
+              Battle
+            </Link>
+          </div>
+        </div>
+
         <div className="filter">
           <Languages
             langArr={langArr}
