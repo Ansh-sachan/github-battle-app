@@ -1,8 +1,8 @@
 import Popular from './components/popular';
-import Battle from './components/battle';
 // import { BrowserRouter,Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './style.css';
+import Battle from './components/Battle1';
 function App() {
   return (
     <>

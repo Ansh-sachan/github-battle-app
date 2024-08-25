@@ -1,71 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-class Popular extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filter: 'All',
-      data: '',
-    };
-  }
+function Popular() {
+  let [filter, setFilter] = useState('');
+  let [data, setData] = useState('');
+  let langArr = ['All', 'Javascript', 'Python', 'Ruby', 'Java', 'CSS'];
 
-  componentDidMount() {
-    this.fetchData();
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.filter !== this.state.filter) {
-      this.fetchData();
-    }
-  }
-  fetchData = () => {
+  // componentDidMount() {
+  //   this.fetchData();
+  // }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.filter !== this.state.filter) {
+  //     this.fetchData();
+  //   }
+  // }
+
+  useEffect(() => {
     fetch(
-      `https://api.github.com/search/repositories?q=stars:%3E1+language:${this.state.filter}&sort=stars&order=desc&type=Repositories`
+      `https://api.github.com/search/repositories?q=stars:%3E1+language:${filter}&sort=stars&order=desc&type=Repositories`
     )
       .then((res) => res.json())
-      .then((data) => this.setState({ data }));
-  };
-  handleClick = (value) => {
-    if (value !== this.state.filter) {
-      this.setState({
-        filter: value,
-        data: '',
-      });
+      .then((data) => setData(data));
+  }, [filter]);
+  const handleClick = (value) => {
+    if (value !== filter) {
+      setFilter(value);
     }
   };
-  render() {
-    let langArr = ['All', 'Javascript', 'Python', 'Ruby', 'Java', 'CSS'];
-    return (
-      <>
-        <div className="links flex">
-          <div>
-            <Link to="/" exact>
-              Popular
-            </Link>
-          </div>
-          <div>
-            <Link to="/battle" exact>
-              Battle
-            </Link>
-          </div>
+  return (
+    <>
+      <div className="links flex">
+        <div>
+          <Link to="/" exact>
+            Popular
+          </Link>
         </div>
+        <div>
+          <Link to="/battle" exact>
+            Battle
+          </Link>
+        </div>
+      </div>
 
-        <div className="filter">
-          <Languages
-            langArr={langArr}
-            handleClick={this.handleClick}
-            filter={this.state.filter}
-          />
-        </div>
-        {this.state.data ? (
-          <Repo items={this.state.data.items} />
-        ) : (
-          <div className="loader"></div>
-        )}
-      </>
-    );
-  }
+      <div className="filter">
+        <Languages
+          langArr={langArr}
+          handleClick={handleClick}
+          filter={filter}
+        />
+      </div>
+      {this.state.data ? (
+        <Repo items={data.items} />
+      ) : (
+        <div className="loader"></div>
+      )}
+    </>
+  );
 }
+
 function Languages({ langArr, handleClick, filter }) {
   let languages = langArr.map((language) => (
     <span
