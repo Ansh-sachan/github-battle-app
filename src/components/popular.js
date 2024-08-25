@@ -6,15 +6,6 @@ function Popular() {
   let [data, setData] = useState('');
   let langArr = ['All', 'Javascript', 'Python', 'Ruby', 'Java', 'CSS'];
 
-  // componentDidMount() {
-  //   this.fetchData();
-  // }
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.filter !== this.state.filter) {
-  //     this.fetchData();
-  //   }
-  // }
-
   useEffect(() => {
     fetch(
       `https://api.github.com/search/repositories?q=stars:%3E1+language:${filter}&sort=stars&order=desc&type=Repositories`
